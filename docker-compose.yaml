@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto
+    ports:
+      - "1883:1883"
+    networks:
+      - mqtt-network
+    volumes:
+      - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+
+  springboot-app:
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    environment:
+      MQTT_BROKER_URL: mosquitto
+    networks:
+      - mqtt-network
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+      - 1.1.1.1
+
+networks:
+  mqtt-network:
+    driver: bridge
