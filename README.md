@@ -16,5 +16,5 @@
 ## Cara Testing
 
 1. Buka Terminal 
-2. Input Command docker exec -it mqtt-base-mosquitto-1 mosquitto_sub -h localhost -t "test/rey79" atau docker exec -it <nama-container> mosquitto_sub -h localhost -t "test/rey79"
+2. Input Command docker exec -it mqtt-base-mosquitto-1 mosquitto_sub -h localhost -t "test/rey79" atau docker exec -it "nama-container" mosquitto_sub -h localhost -t "test/rey79"
 3. Hit Api
